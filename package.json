@@ -1,0 +1,19 @@
+{
+  "name": "parkify-presentation",
+  "version": "1.0.0",
+  "description": "Serviço de apresentação das informações do projeto Parkify. ",
+  "main": "src/server.ts",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpotifaiI/parkify-presentation.git"
+  },
+  "author": "Spotifail",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SpotifaiI/parkify-presentation/issues"
+  },
+  "homepage": "https://github.com/SpotifaiI/parkify-presentation#readme"
+}
