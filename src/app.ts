@@ -8,6 +8,10 @@ const app = express();
 app.use(cors());
 app.use(json());
 
+type RefreshData = {
+  near_free_slot?: string;
+};
+
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
@@ -19,10 +23,14 @@ app.get('/', (_, res) => {
   res.status(200).send({ ok: true });
 });
 
-app.get('/refresh', (_, res) => {
-  io.emit('refresh', { ok: true });
+app.post('/refresh', (req, res) => {
+  const { near_free_slot }: RefreshData = req.body;
+  const data = { nearFreeSlot: near_free_slot };
 
-  res.status(200).send({ ok: true });
+  console.log('repassando dados...',data);
+
+  io.emit('refresh', data);
+  res.status(200).send(data);
 });
 
 io.on('connection', socket => {
