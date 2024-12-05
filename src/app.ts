@@ -9,7 +9,14 @@ app.use(cors());
 app.use(json());
 
 type RefreshData = {
-  near_free_slot?: string;
+  recentFilledSlot: string;
+  recentFreeSlot: string;
+  busySlot: string;
+  chillSlot: string;
+  timeFreeToday: string;
+  timeFilledToday: string;
+  recentFree: string[];
+  recentFilled: string[];
 };
 
 const server = createServer(app);
@@ -24,10 +31,9 @@ app.get('/', (_, res) => {
 });
 
 app.post('/refresh', (req, res) => {
-  const { near_free_slot }: RefreshData = req.body;
-  const data = { nearFreeSlot: near_free_slot };
+  const data: RefreshData = req.body;
 
-  console.log('repassando dados...',data);
+  console.log('repassando dados...', data);
 
   io.emit('refresh', data);
   res.status(200).send(data);
